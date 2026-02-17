@@ -18,6 +18,7 @@ export default function SmallAnimationPage() {
         return <SmallAnimation2 />;
     }
 
+
     if (slug === '3') {
         return <SmallAnimation3 />;
     }

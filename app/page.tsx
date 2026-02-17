@@ -207,6 +207,26 @@ const HomePage = () => {
           name: "Reverse Scroll",
           description: "Sticky Image Reverse",
         },
+        {
+          path: "/animation/8",
+          name: "Text Parallax",
+          description: "Text Parallax On Scroll",
+        },
+        {
+          path: "/animation/9",
+          name: "Perspective Scroll",
+          description: "Perspective Stacks Scroll",
+        },
+        {
+          path: "/animation/10",
+          name: "Perspective Scroll 2",
+          description: "Perspective Stacks with Static End",
+        },
+        {
+          path: "/animation/11",
+          name: "Split Gallery",
+          description: "Split Perspective Scroll Animation",
+        },
       ],
     },
     {
@@ -225,8 +245,8 @@ const HomePage = () => {
         },
         {
           path: "/small/3",
-          name: "Velocity Marquee",
-          description: "Velocity Scroll Marquee",
+          name: "Fluid Buttons",
+          description: "Fluid Button Collection",
         },
         {
           path: "/small/5",
@@ -348,11 +368,17 @@ const HomePage = () => {
                     {category.icon}
                   </div>
                   <h2
-                    className={`text-sm font-semibold truncate transition-colors ${isDarkMode ? "text-gray-200" : "text-gray-800"
+                    className={`text-sm font-semibold truncate flex-1 transition-colors ${isDarkMode ? "text-gray-200" : "text-gray-800"
                       }`}
                   >
                     {category.name}
                   </h2>
+                  <span
+                    className={`text-xs px-2 py-0.5 rounded-full ${isDarkMode ? "bg-gray-700 text-gray-300" : "bg-gray-100 text-gray-600"
+                      }`}
+                  >
+                    {category.pages.length}
+                  </span>
                 </div>
 
                 {/* Compact Pages List */}

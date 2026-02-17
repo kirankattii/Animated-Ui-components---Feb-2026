@@ -1,6 +1,33 @@
 "use client";
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
+import {
+    Send,
+    ArrowRight,
+    Sparkles,
+    Zap,
+    Heart,
+    Download,
+    Play,
+    Lock,
+    Bell,
+    RefreshCw,
+    Search,
+    Settings,
+    Plus,
+    Moon,
+    Sun,
+    Layers,
+    MousePointer2,
+    Trash2,
+    Share2,
+    CreditCard,
+    Target,
+    Rocket,
+    Code,
+    Globe,
+    Ghost,
+} from 'lucide-react';
 
 // --- HELPERS ---
 const useMousePosition = (ref: React.RefObject<HTMLElement | null>) => {
@@ -219,14 +246,14 @@ const LensFlareButton = ({ children = "Flare" }: ButtonProps) => {
 };
 
 const PathMorphButton = ({ children = "Morph" }: ButtonProps) => (
-    <button className="group relative px-10 py-4 text-white font-bold">
+    <motion.button whileHover="hover" className="group relative px-10 py-4 text-white font-bold">
         <span className="relative z-10">{children}</span>
         <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 40" preserveAspectRatio="none">
-            <motion.path d="M0,0 L100,0 L100,40 L0,40 Z" fill="#4f46e5" variants={{
+            <motion.path d="M0,0 L100,0 L100,40 L0,40 Z" variants={{
                 hover: { d: "M0,10 Q50,0 100,10 L100,30 Q50,40 0,30 Z" }
-            }} transition={{ type: 'spring', stiffness: 300, damping: 10 }} className="group-hover:fill-indigo-500" />
+            }} transition={{ type: 'spring', stiffness: 300, damping: 10 }} className="group-hover:fill-indigo-500 fill-[#4f46e5]" />
         </svg>
-    </button>
+    </motion.button>
 );
 
 const DoubleLayerButton = ({ text = "Primary", sub = "Secondary" }) => (
@@ -284,6 +311,337 @@ const ElasticStretchButton = ({ children = "Elastic" }: ButtonProps) => (
     </motion.button>
 );
 
+// --- NEW ADDITIONS FROM buttonst.txt ---
+
+// 1. The Glitch Shimmer
+const GlitchButton = () => (
+    <motion.button
+        whileHover="hover"
+        whileTap={{ scale: 0.95 }}
+        variants={{ hover: { scale: 1.05 } }}
+        className="relative px-8 py-3 bg-indigo-600 text-white font-bold rounded-lg overflow-hidden group"
+    >
+        <span className="relative z-10 flex items-center gap-2">
+            <Zap className="w-4 h-4" /> GLITCH EFFECT
+        </span>
+        <motion.div
+            variants={{
+                initial: { x: '-100%' },
+                hover: { x: '100%' }
+            }}
+            transition={{ repeat: Infinity, duration: 0.5, repeatDelay: 0.1 }}
+            className="absolute inset-0 bg-white/30 skew-x-12"
+        />
+    </motion.button>
+);
+
+// 2. Liquid Fill
+const LiquidFill = () => (
+    <motion.button
+        whileHover="hover"
+        className="relative px-8 py-3 border-2 border-cyan-500 text-cyan-500 font-bold rounded-full overflow-hidden group"
+    >
+        <span className="relative z-10 transition-colors duration-300 group-hover:text-white">LIQUID FILL</span>
+        <motion.div
+            variants={{
+                initial: { y: '100%' },
+                hover: { y: 0 }
+            }}
+            transition={{ type: 'spring', damping: 15 }}
+            className="absolute inset-0 bg-cyan-500 z-0"
+        />
+    </motion.button>
+);
+
+// 3. Neon Pulse
+const NeonPulse = () => (
+    <motion.button
+        whileHover={{
+            boxShadow: "0 0 20px rgba(168, 85, 247, 0.8)",
+            textShadow: "0 0 8px rgba(255, 255, 255, 0.8)",
+            scale: 1.02
+        }}
+        className="px-8 py-3 bg-transparent border-2 border-purple-500 text-purple-500 rounded-lg font-bold transition-all"
+    >
+        NEON PULSE
+    </motion.button>
+);
+
+// 4. Magnetic Pull (Simulated with simple hover)
+const MagneticButton = () => (
+    <motion.button
+        whileHover={{ y: -5, x: 5 }}
+        className="px-8 py-3 bg-zinc-900 text-white rounded-xl shadow-xl hover:shadow-indigo-500/20 transition-all flex items-center gap-2"
+    >
+        MAGNETIC <MousePointer2 className="w-4 h-4" />
+    </motion.button>
+);
+
+// 5. Border Trace
+const BorderTrace = () => (
+    <button className="relative px-8 py-3 bg-slate-900 text-white font-medium group rounded-md">
+        <span className="relative z-10">BORDER TRACE</span>
+        <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-400 rounded-md transition-all duration-500 [clip-path:inset(0_100%_0_0)] group-hover:[clip-path:inset(0_0_0_0)]" />
+        <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-400 rounded-md transition-all duration-500 [clip-path:inset(0_0_100%_0)] group-hover:[clip-path:inset(0_0_0_0)] delay-75" />
+    </button>
+);
+
+// 6. 3D Push
+const Push3D = () => (
+    <button className="bg-emerald-600 rounded-lg border-b-[6px] border-emerald-800 active:border-b-0 active:translate-y-[4px] px-8 py-3 text-white font-bold transition-all">
+        3D PUSH
+    </button>
+);
+
+// 7. Text Scramble / Slide
+const TextSlide = () => (
+    <button className="relative px-8 py-3 bg-black text-white font-bold overflow-hidden rounded group">
+        <div className="flex flex-col h-6 overflow-hidden">
+            <span className="transition-transform duration-300 group-hover:-translate-y-full">HOVER ME</span>
+            <span className="transition-transform duration-300 group-hover:-translate-y-full text-yellow-400">LET'S GO</span>
+        </div>
+    </button>
+);
+
+// 8. Ghost Reveal
+const GhostReveal = () => (
+    <motion.button
+        whileHover="hover"
+        className="relative px-8 py-3 bg-transparent border border-white/20 text-white rounded-lg flex items-center gap-2"
+    >
+        <motion.span variants={{ hover: { opacity: 0.3 } }}>GHOST MODE</motion.span>
+        <motion.div
+            variants={{ hover: { opacity: 1, x: 0, scale: 1.2 } }}
+            initial={{ opacity: 0, x: -10, scale: 0.8 }}
+            className="absolute inset-0 flex items-center justify-center pointer-events-none"
+        >
+            <Ghost className="text-white" />
+        </motion.div>
+    </motion.button>
+);
+
+// 9. Floating Particles (Simplified)
+const ParticleBurst = () => (
+    <motion.button
+        whileHover="hover"
+        whileTap={{ scale: 0.9 }}
+        className="relative px-8 py-3 bg-orange-500 text-white rounded-full font-bold group"
+    >
+        BURST <Sparkles className="inline w-4 h-4" />
+        <motion.span
+            variants={{
+                hover: { scale: [1, 1.5, 0], opacity: [1, 1, 0], x: [0, 20, 40], y: [0, -20, -40] }
+            }}
+            className="absolute top-0 right-0 w-2 h-2 bg-yellow-300 rounded-full opacity-0 pointer-events-none"
+        />
+        <motion.span
+            variants={{
+                hover: { scale: [1, 1.5, 0], opacity: [1, 1, 0], x: [0, -20, -40], y: [0, 20, 40] }
+            }}
+            className="absolute bottom-0 left-0 w-2 h-2 bg-yellow-300 rounded-full opacity-0 pointer-events-none"
+        />
+    </motion.button>
+);
+
+// 10. Expanding Circle
+const CircleExpand = () => (
+    <button className="relative px-8 py-3 text-zinc-900 font-bold overflow-hidden rounded-lg group">
+        <span className="relative z-10 transition-colors duration-300 group-hover:text-white">CIRCLE EXPAND</span>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-0 h-0 bg-blue-600 rounded-full transition-all duration-500 group-hover:w-[300px] group-hover:h-[300px]" />
+    </button>
+);
+
+// 11. Jelly Wobble
+const JellyWobble = () => (
+    <motion.button
+        whileHover={{
+            scale: 1.1,
+            rotate: [0, -5, 5, -5, 5, 0],
+            transition: { duration: 0.4 }
+        }}
+        className="px-8 py-3 bg-pink-500 text-white font-bold rounded-2xl shadow-lg"
+    >
+        JELLY WOBBLE
+    </motion.button>
+);
+
+// 12. Slice Transition
+const SliceButton = () => (
+    <button className="relative px-8 py-3 bg-rose-600 text-white font-black overflow-hidden group">
+        <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-[45deg]" />
+        <span className="relative z-10">SLICE THROUGH</span>
+    </button>
+);
+
+// 13. Dot Reveal
+const DotReveal = () => (
+    <button className="relative px-8 py-3 border border-zinc-700 text-white rounded-full group overflow-hidden">
+        <span className="relative z-10">DOT REVEAL</span>
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-white rounded-full transition-all duration-300 group-hover:w-full group-hover:h-full group-hover:rounded-none" />
+    </button>
+);
+
+// 14. Skew Slide
+const SkewSlide = () => (
+    <button className="relative px-8 py-3 border-2 border-indigo-400 text-indigo-400 font-bold group overflow-hidden">
+        <div className="absolute inset-0 bg-indigo-400 -translate-x-full -skew-x-12 transition-transform duration-300 group-hover:translate-x-0 group-hover:skew-x-0" />
+        <span className="relative z-10 transition-colors duration-300 group-hover:text-white">SKEW SLIDE</span>
+    </button>
+);
+
+// 15. Arrow Ejection
+const ArrowEject = () => (
+    <motion.button
+        whileHover="hover"
+        className="flex items-center gap-2 px-8 py-3 bg-blue-600 text-white font-bold rounded-lg overflow-hidden"
+    >
+        GET STARTED
+        <motion.span variants={{ hover: { x: 50, opacity: 0 } }} transition={{ duration: 0.2 }}>
+            <ArrowRight className="w-5 h-5" />
+        </motion.span>
+        <motion.span
+            initial={{ x: -50, opacity: 0 }}
+            variants={{ hover: { x: -20, opacity: 1 } }}
+            transition={{ duration: 0.2 }}
+        >
+            <ArrowRight className="w-5 h-5" />
+        </motion.span>
+    </motion.button>
+);
+
+// 16. Gradient Wave
+const GradientWave = () => (
+    <button className="px-8 py-3 font-bold text-white rounded-lg bg-gradient-to-r from-teal-400 via-blue-500 to-purple-600 bg-[length:200%_auto] hover:bg-[right_center] transition-all duration-500">
+        GRADIENT WAVE
+    </button>
+);
+
+// 17. Shadow Glow
+const ShadowGlow = () => (
+    <button className="px-8 py-3 bg-white text-black font-bold rounded-lg hover:shadow-[0_0_15px_5px_rgba(255,255,255,0.4)] transition-shadow">
+        GLOW ON
+    </button>
+);
+
+// 18. Glass Blur
+const GlassBlur = () => (
+    <button className="px-8 py-3 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-lg hover:bg-white/20 transition-colors">
+        GLASS BLUR
+    </button>
+);
+
+// 19. Magnetic Icon
+const MagneticIcon = () => (
+    <motion.button
+        whileHover="hover"
+        className="p-4 bg-zinc-800 text-white rounded-full group"
+    >
+        <motion.div variants={{ hover: { rotate: 360, scale: 1.2 } }}>
+            <Settings className="w-6 h-6" />
+        </motion.div>
+    </motion.button>
+);
+
+// 20. Double Border
+const DoubleBorder = () => (
+    <button className="relative px-8 py-3 text-white group">
+        <span className="relative z-10">DOUBLE BORDER</span>
+        <div className="absolute inset-0 border border-white/30 rounded" />
+        <div className="absolute inset-[-4px] border border-blue-500 opacity-0 group-hover:opacity-100 transition-opacity rounded scale-95 group-hover:scale-100 transition-transform" />
+    </button>
+);
+
+// 21. Bouncing Icon
+const BouncingIcon = () => (
+    <button className="flex items-center gap-3 px-8 py-3 bg-red-500 text-white font-bold rounded-lg group">
+        FAVORITE
+        <Heart className="w-5 h-5 group-hover:animate-bounce fill-current" />
+    </button>
+);
+
+// 22. Underline Flow
+const UnderlineFlow = () => (
+    <button className="relative px-4 py-2 text-white font-medium group">
+        UNDERLINE FLOW
+        <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300 group-hover:w-full" />
+    </button>
+);
+
+// 23. Staggered Text (Simple version)
+const StaggeredText = () => (
+    <motion.button whileHover="hover" className="group flex px-8 py-3 bg-zinc-900 text-white font-bold rounded-lg overflow-hidden">
+        {"STAGGER".split("").map((l, i) => (
+            <motion.span
+                key={i}
+                variants={{ hover: { y: -5, color: "#a855f7" } }}
+                transition={{ type: 'spring', stiffness: 300 }}
+            >
+                {l}
+            </motion.span>
+        ))}
+    </motion.button>
+);
+
+// 24. Corner Border
+const CornerBorder = () => (
+    <button className="relative px-8 py-3 text-white font-bold group">
+        CORNER DRAW
+        <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-cyan-400 group-hover:w-full group-hover:h-full transition-all" />
+        <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-cyan-400 group-hover:w-full group-hover:h-full transition-all" />
+    </button>
+);
+
+// 25. Retro Pixel (Blocky shadow)
+const RetroPixel = () => (
+    <button className="px-8 py-3 bg-white text-black font-bold border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all">
+        RETRO PIXEL
+    </button>
+);
+
+// 26. Holographic
+const Holographic = () => (
+    <button className="relative px-8 py-3 font-black rounded-lg overflow-hidden bg-zinc-800 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-cyan-400 to-yellow-400 group">
+        <span className="absolute inset-0 border-2 border-white/20 rounded-lg group-hover:border-white/50 transition-colors" />
+        HOLOGRAPHIC
+    </button>
+);
+
+// 27. Swipe Color
+const SwipeColor = () => (
+    <button className="relative px-8 py-3 bg-zinc-900 text-white font-bold rounded overflow-hidden group">
+        <span className="relative z-10">SWIPE COLOR</span>
+        <div className="absolute inset-0 bg-lime-400 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+        <style>{`.group:hover span { color: black; }`}</style>
+    </button>
+);
+
+// 28. Ripple Effect (CSS-based Trigger)
+const RippleEffect = () => (
+    <button className="relative px-8 py-3 bg-blue-700 text-white font-bold rounded-lg overflow-hidden group">
+        RIPPLE ME
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-0 h-0 bg-white/30 rounded-full group-active:w-40 group-active:h-40 transition-all duration-500" />
+    </button>
+);
+
+// 29. Split Slide
+const SplitSlide = () => (
+    <button className="relative px-8 py-3 bg-zinc-800 text-white font-bold rounded group overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-1/2 bg-indigo-500 -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
+        <div className="absolute bottom-0 left-0 w-full h-1/2 bg-indigo-500 translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
+        <span className="relative z-10">SPLIT REVEAL</span>
+    </button>
+);
+
+// 30. Rotating Border
+const RotatingBorder = () => (
+    <div className="relative p-[2px] overflow-hidden rounded-full group">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-[spin_3s_linear_infinite] opacity-0 group-hover:opacity-100 transition-opacity" />
+        <button className="relative px-8 py-3 bg-zinc-950 text-white font-bold rounded-full">
+            RAINBOW EDGE
+        </button>
+    </div>
+);
+
 // --- MAIN SHOWCASE ---
 
 function Card({ label, children }: { label: string, children: React.ReactNode }) {
@@ -330,6 +688,38 @@ export default function SmallAnimation2() {
                 <Card label="3D Perspective Flip"><Flip3DButton /></Card>
                 <Card label="Mouse Tracker Spotlight"><SpotlightButton /></Card>
                 <Card label="Elastic Physics"><ElasticStretchButton /></Card>
+
+                {/* --- NEW COMPONENTS --- */}
+                <Card label="Glitch Shimmer"><GlitchButton /></Card>
+                <Card label="Liquid Fill"><LiquidFill /></Card>
+                <Card label="Neon Pulse"><NeonPulse /></Card>
+                <Card label="Magnetic Move"><MagneticButton /></Card>
+                <Card label="Border Trace"><BorderTrace /></Card>
+                <Card label="3D Push"><Push3D /></Card>
+                <Card label="Text Slide"><TextSlide /></Card>
+                <Card label="Ghost Reveal"><GhostReveal /></Card>
+                <Card label="Particle Burst"><ParticleBurst /></Card>
+                <Card label="Circle Expand"><CircleExpand /></Card>
+                <Card label="Jelly Wobble"><JellyWobble /></Card>
+                <Card label="Slice Through"><SliceButton /></Card>
+                <Card label="Dot Reveal"><DotReveal /></Card>
+                <Card label="Skew Slide"><SkewSlide /></Card>
+                <Card label="Arrow Eject"><ArrowEject /></Card>
+                <Card label="Gradient Wave"><GradientWave /></Card>
+                <Card label="Shadow Glow"><ShadowGlow /></Card>
+                <Card label="Glass Blur"><GlassBlur /></Card>
+                <Card label="Magnetic Icon"><MagneticIcon /></Card>
+                <Card label="Double Border"><DoubleBorder /></Card>
+                <Card label="Bouncing Icon"><BouncingIcon /></Card>
+                <Card label="Underline Flow"><UnderlineFlow /></Card>
+                <Card label="Staggered Text"><StaggeredText /></Card>
+                <Card label="Corner Draw"><CornerBorder /></Card>
+                <Card label="Retro Pixel"><RetroPixel /></Card>
+                <Card label="Holographic"><Holographic /></Card>
+                <Card label="Swipe Color"><SwipeColor /></Card>
+                <Card label="Ripple Effect"><RippleEffect /></Card>
+                <Card label="Split Reveal"><SplitSlide /></Card>
+                <Card label="Rainbow Edge"><RotatingBorder /></Card>
 
             </main>
 
